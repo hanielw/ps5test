@@ -8,44 +8,24 @@
 </head>
 <body>
   <script>
-    let score = 0;
-    let squareSize = 50;
-    let squareX, squareY;
-
     function setup() {
-      createCanvas(400, 400);
-      resetSquare();
+    // put setup code here
+    createCanvas(480, 360);
+    background(0);
+    fill('#BA55D3');
+}
+function draw() {
+    // put drawing code here
+    band = 16;
+    for (var y = band; y <= height-band; y += 8) {
+        for (var x = y+band; x <= width-y; x += 8) {
+            z = 16 - y/10.0;
+            if (z<4)
+                z = 4;
+            circle(x, y, z);
+        }
     }
-
-    function draw() {
-      background(220);
-
-      // 显示方块
-      fill(0, 150, 200);
-      rect(squareX, squareY, squareSize, squareSize);
-
-      // 显示分数
-      textSize(20);
-      textAlign(LEFT, TOP);
-      fill(0);
-      text('Score: ' + score, 10, 10);
-    }
-
-    function mousePressed() {
-      // 检查是否点击到方块
-      if (mouseX >= squareX && mouseX <= squareX + squareSize &&
-          mouseY >= squareY && mouseY <= squareY + squareSize) {
-        // 点击到方块，增加分数并重置方块位置
-        score++;
-        resetSquare();
-      }
-    }
-
-    function resetSquare() {
-      // 随机生成方块位置
-      squareX = random(width - squareSize);
-      squareY = random(height - squareSize);
-    }
+}
   </script>
 </body>
 </html>
